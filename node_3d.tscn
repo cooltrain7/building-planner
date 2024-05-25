@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3lk8mtwxyj5l"]
+
+[ext_resource type="Script" path="res://Cursor.gd" id="1_cunaq"]
+[ext_resource type="Script" path="res://Placer.gd" id="1_gi1t8"]
+[ext_resource type="Resource" uid="uid://cuc5l1hs4w1rt" path="res://Buildables/1x1.tres" id="2_pvw4m"]
+[ext_resource type="Resource" uid="uid://odu5lflbdktl" path="res://Buildables/Gate.tres" id="3_ybgya"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0fsi"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Cursor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13381, 24.279, 2.30481)
+script = ExtResource("1_cunaq")
+cursor_mesh = ExtResource("2_pvw4m")
+old_mesh = ExtResource("3_ybgya")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("cursor")]
+transform = Transform3D(-3.06812e-08, -0.701905, 0.712271, 3.11344e-08, 0.712271, 0.701905, -1, 4.37114e-08, 3.55271e-15, 8.13381, 24.279, 2.30481)
+size = 17.19
+script = ExtResource("1_gi1t8")
+cursor = NodePath("../Cursor")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.1449, 36.2807, -26.4551)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 0.203, 0, 0, 0, 1000, 8.40457, 0, 0)
+visible = false
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 0, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_t0fsi")
