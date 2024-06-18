@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgubfm5hmfmwo"]
+
+[ext_resource type="Material" uid="uid://w36q1vfybo7q" path="res://editor/materials/stone_T3.tres" id="1_21r2e"]
+[ext_resource type="ArrayMesh" uid="uid://b1r4hfqsab8ua" path="res://editor/meshes/Foundation3x3Base.obj" id="1_ipoo7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l1c7m"]
+size = Vector3(3.022, 11.9, 3.013)
+
+[node name="Area3D" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_l1c7m")
+
+[node name="FortSquare3x3" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_21r2e")
+mesh = ExtResource("1_ipoo7")
