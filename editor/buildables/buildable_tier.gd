@@ -24,9 +24,12 @@ func rem_build_req(req: int) -> void:
 func has_build_req(req : int) -> bool:
 	return (build_reqs & req) != 0
 
+## Bitmask enum of structure build requirements
 enum BuildReqiurements
 {
 	BuildInTown = 1 << 0,
-	BuildInHomestead = 1 << 1,
-	BuildInWorkshop = 1 << 2
+	BuildInSmallCamp = 1 << 1,
+	BuildInLargeCamp = 1 << 2,
+	BuildInHomestead = 1 << 3,
+	BuildInWorkshop = 1 << 4
 }

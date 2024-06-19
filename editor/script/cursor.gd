@@ -3,13 +3,11 @@ extends Node3D
 class_name BuildableCursor
 
 @export var data_control: DataController
+@export_category("UI Labels")
 @export var overlap_label: Label
 @export var build_label: Label
-@export var cursor_build: Dictionary
 
-##Debug until a UI menu would be used to select other builds
-@export var cursor_build_pos: int = 0
-
+var cursor_build: CursorSelection
 var overlap_area: Area3D = null :
 	get:
 		return overlap_area
@@ -50,50 +48,63 @@ var is_placable: bool = false :
 
 func _ready():
 	is_placable = true
-	cursor_build = {
-		"build": data_control.buildables[cursor_build_pos],
-		"tier": data_control.buildables[cursor_build_pos].base_tier()
-	}
-	update_preview()
+	_setupCursor()
+	_update_preview()
+
+## Create a new cursor object with its starting selection
+func _setupCursor():
+	cursor_build = CursorSelection.new()
+	cursor_build.build = data_control.buildables[cursor_build.build_pos]
+	cursor_build.tier = cursor_build.build.base_tier()
 
 func _input(event):
+	if event is InputEventKey && event.is_pressed():
+		if event.keycode == KEY_ESCAPE:
+			cursor_build = null
+			_update_preview()
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if is_placable && cursor_build != null:
 				place_buildable()
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			cursor_build["tier"] = (cursor_build["build"] as Buildable).next_tier(cursor_build["tier"])
-			print("Switched tiers: ",cursor_build["tier"])
-			update_preview()
+			if cursor_build == null:
+				return
+			cursor_build.tier = cursor_build.build.next_tier(cursor_build.tier)
+			print("Switched tiers: ",cursor_build.tier)
+			_update_preview()
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			cursor_build_pos = data_control.next_buildable_pos(cursor_build_pos)
-			cursor_build["build"] = data_control.buildables[cursor_build_pos]
-			cursor_build["tier"] = cursor_build["build"].base_tier()
-			print("Switched build: ",cursor_build["build"].get_tier(cursor_build["tier"]).code_name)
-			update_preview()
+			if cursor_build == null:
+				_setupCursor()
+			cursor_build.build_pos = data_control.next_buildable_pos(cursor_build.build_pos)
+			cursor_build.build = data_control.buildables[cursor_build.build_pos]
+			cursor_build.tier = cursor_build.build.base_tier()
+			print("Switched build: ",cursor_build.build.get_tier(cursor_build.tier).code_name)
+			_update_preview()
 
 ## Create an instance of our current buildable at our position
 func place_buildable():
-	var build_tier = cursor_build["build"].get_tier(cursor_build["tier"])
+	var build_tier = cursor_build.build.get_tier(cursor_build.tier)
 	if build_tier != null:
 		var instance = build_tier.instance.instantiate()
 		(instance as Node3D).position = position
 		get_parent().add_child(instance)
 
 ## Remove and recreate the current preview mesh instance
-func update_preview() -> void:
+func _update_preview() -> void:
 	if get_child_count() > 0:
 		var current_preview = get_child(0)
 		if current_preview != null:
 			current_preview.queue_free()
 	
 	if cursor_build != null:
-		var build_tier = cursor_build["build"].get_tier(cursor_build["tier"]) as BuildableTier
+		var build_tier = cursor_build.build.get_tier(cursor_build.tier) as BuildableTier
 		build_label.text = "Build: {cName} ({tier})".format({"cName": build_tier.code_name, "tier": build_tier.tier})
 		var instance = build_tier.instance.instantiate()
 		(instance as Node3D).name = "preview_mesh"
 		overlap_area = (instance as Area3D)
 		add_child(instance)
+	else:
+		build_label.text = "Build: None"
 
 # Called when another object begins overlapping
 func _on_overlap_begin(_area):
@@ -104,3 +115,10 @@ func _on_overlap_stop(_area):
 	# Check if there are any other objects that still overlap
 	if !overlap_area.has_overlapping_areas():
 		is_placable = true
+
+##Inner class container for a cursor selection
+class CursorSelection:
+	var build: Buildable
+	var tier: int
+	##Debug until a UI menu would be used to select other builds
+	var build_pos: int

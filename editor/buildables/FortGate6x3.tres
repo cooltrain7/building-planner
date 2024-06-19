@@ -10,6 +10,7 @@ script = ExtResource("3_dm4be")
 code_name = "FoundationGateT2"
 disp_name = "Foundation Gate"
 tier = 2
+build_reqs = 0
 instance = ExtResource("2_mho68")
 
 [sub_resource type="Resource" id="Resource_613ql"]
@@ -17,6 +18,7 @@ script = ExtResource("3_dm4be")
 code_name = "FoundationGateT3"
 disp_name = "Foundation Gate"
 tier = 3
+build_reqs = 0
 instance = ExtResource("4_d0u28")
 
 [resource]

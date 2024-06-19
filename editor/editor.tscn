@@ -59,6 +59,10 @@ shadow_size = 5
 
 [node name="Editor" type="Node3D"]
 
+[node name="DataController" type="Node" parent="."]
+script = ExtResource("7_2dhta")
+buildables = Array[Resource("res://editor/buildables/buildable.gd")]([ExtResource("7_mtjmq"), ExtResource("8_dcf3m")])
+
 [node name="CameraContoller" type="Node3D" parent="."]
 script = ExtResource("1_hw85h")
 
@@ -126,7 +130,8 @@ layout_mode = 2
 text = "Camera Move: WASD
 Camera Rotate: Q/E
 Camera Up/Down: CTRL/SPACE
-Switch Objects: ESC
+Switch Objects: Scroll
+Switch Tier: Right Click
 Place: Left Click"
 label_settings = SubResource("LabelSettings_orjhg")
 vertical_alignment = 1
@@ -154,7 +159,3 @@ layout_mode = 2
 text = "Piece Overlapping: Yes"
 label_settings = SubResource("LabelSettings_sox1h")
 vertical_alignment = 1
-
-[node name="DataController" type="Node" parent="."]
-script = ExtResource("7_2dhta")
-buildables = Array[Resource("res://editor/buildables/buildable.gd")]([ExtResource("7_mtjmq"), ExtResource("8_dcf3m")])
