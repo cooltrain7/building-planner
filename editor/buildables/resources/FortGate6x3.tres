@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Buildable" load_steps=7 format=3 uid="uid://bduaqo5n06mu8"]
+
+[ext_resource type="Script" path="res://editor/script/buildables/buildable.gd" id="1_ghqc6"]
+[ext_resource type="PackedScene" uid="uid://bpb7517spqnw5" path="res://editor/buildables/scenes/FortGate6x3_T2.tscn" id="2_y67w6"]
+[ext_resource type="Script" path="res://editor/script/buildables/buildable_tier.gd" id="3_dm4be"]
+[ext_resource type="PackedScene" uid="uid://cif4pvvbrbgku" path="res://editor/buildables/scenes/FortGate6x3_T3.tscn" id="4_d0u28"]
+
+[sub_resource type="Resource" id="Resource_1gnvh"]
+script = ExtResource("3_dm4be")
+code_name = "FoundationGateT2"
+disp_name = "Foundation Gate"
+tier = 2
+build_reqs = 0
+mesh = ExtResource("2_y67w6")
+
+[sub_resource type="Resource" id="Resource_613ql"]
+script = ExtResource("3_dm4be")
+code_name = "FoundationGateT3"
+disp_name = "Foundation Gate"
+tier = 3
+build_reqs = 0
+mesh = ExtResource("4_d0u28")
+
+[resource]
+script = ExtResource("1_ghqc6")
+tiers = Array[ExtResource("3_dm4be")]([SubResource("Resource_1gnvh"), SubResource("Resource_613ql")])

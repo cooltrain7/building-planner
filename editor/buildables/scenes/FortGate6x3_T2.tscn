@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpb7517spqnw5"]
+
+[ext_resource type="ArrayMesh" uid="uid://bsuwuna6oans5" path="res://editor/meshes/FoundationT2_Gate_.obj" id="1_bd1pw"]
+[ext_resource type="Material" uid="uid://brocvytloevaq" path="res://editor/materials/wood_T2.tres" id="1_oav6h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ul0ce"]
+size = Vector3(5.97899, 5.75845, 3)
+
+[node name="Area3D" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88909, 0)
+shape = SubResource("BoxShape3D_ul0ce")
+
+[node name="FortSquare3x3" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_oav6h")
+mesh = ExtResource("1_bd1pw")
