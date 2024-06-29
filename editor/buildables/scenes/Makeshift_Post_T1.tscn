@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwacvm74tpeix"]
+
+[ext_resource type="Material" uid="uid://brocvytloevaq" path="res://editor/materials/wood_T2.tres" id="1_scsxi"]
+[ext_resource type="BoxMesh" uid="uid://bm8kvw0xufg3j" path="res://editor/meshes/Makeshift_Seg_Post.tres" id="1_ykspi"]
+
+[node name="MakeshiftPostT1" type="Node3D"]
+
+[node name="MakeshiftSegPost" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0)
+material_override = ExtResource("1_scsxi")
+mesh = ExtResource("1_ykspi")

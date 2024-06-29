@@ -1,6 +1,9 @@
 extends Resource
 
 class_name Buildable
+## Build Type (Either static mesh, or a spline made of mesh segments)
+@export var build_type: BuildType
+## List of possible tiers
 @export var tiers : Array[BuildableTier]
 
 ## Return the buildables base tier int
@@ -20,3 +23,9 @@ func next_tier(current_tier: int) -> int:
 		if (tiers[i].tier == current_tier):
 			return tiers[i + 1].tier
 	return base_tier()
+
+enum BuildType
+{
+	Static,
+	Spline,
+}

@@ -9,8 +9,8 @@ class_name BuildableTier
 @export var tier: int
 ## Bitmask of build requirements
 @export var build_reqs: int = 0
-## Build mesh scene
-@export var mesh: PackedScene
+##Mesh data for this build
+@export var mesh: StaticMeshData
 
 ## Adds a build requirement
 func add_build_req(req: int) -> void:
@@ -31,5 +31,5 @@ enum BuildReqiurements
 	BuildInSmallCamp = 1 << 1,
 	BuildInLargeCamp = 1 << 2,
 	BuildInHomestead = 1 << 3,
-	BuildInWorkshop = 1 << 4
+	BuildInWorkshop = 1 << 4,
 }

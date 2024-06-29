@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://jvpf6sj2uueo"]
+
+[ext_resource type="Material" uid="uid://brocvytloevaq" path="res://editor/materials/wood_T2.tres" id="1_4cbru"]
+[ext_resource type="CylinderMesh" uid="uid://bvqatui0ryc8m" path="res://editor/meshes/Makeshift_Seg2_T1.tres" id="2_oeb28"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cak7x"]
+size = Vector3(1, 1.9635, 0.106781)
+
+[node name="MakeshiftT1" type="Area3D"]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01068, 0.000442505)
+shape = SubResource("BoxShape3D_cak7x")
+
+[node name="MakeshiftSeg2T1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.452692, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347529, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.248608, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143444, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0422754, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0628878, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161809, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.266972, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.367835, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")
+
+[node name="MakeshiftSeg2T10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.472998, 1.02465, 0)
+material_override = ExtResource("1_4cbru")
+mesh = ExtResource("2_oeb28")

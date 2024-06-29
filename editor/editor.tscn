@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3lk8mtwxyj5l"]
+[gd_scene load_steps=20 format=3 uid="uid://c3lk8mtwxyj5l"]
 
 [ext_resource type="Script" path="res://editor/script/cursor.gd" id="1_8uddu"]
 [ext_resource type="Script" path="res://editor/script/camera_controller.gd" id="1_hw85h"]
+[ext_resource type="Resource" uid="uid://bo01ecthitrpj" path="res://editor/buildables/resources/MakeshiftT1.tres" id="4_75lgg"]
 [ext_resource type="Script" path="res://editor/script/placer.gd" id="4_y7a0h"]
 [ext_resource type="Texture2D" uid="uid://ck1sofmxu5rna" path="res://editor/textures/uv_grid.png" id="6_skn7o"]
 [ext_resource type="Script" path="res://editor/script/data_controller.gd" id="7_fpsoh"]
@@ -60,7 +61,7 @@ shadow_size = 5
 
 [node name="DataController" type="Node" parent="."]
 script = ExtResource("7_fpsoh")
-buildables = Array[Resource("res://editor/script/buildables/buildable.gd")]([ExtResource("8_vmu0q"), ExtResource("9_qyf8u")])
+buildables = Array[Resource("res://editor/script/buildables/buildable.gd")]([ExtResource("8_vmu0q"), ExtResource("9_qyf8u"), ExtResource("4_75lgg")])
 
 [node name="CameraContoller" type="Node3D" parent="."]
 script = ExtResource("1_hw85h")
