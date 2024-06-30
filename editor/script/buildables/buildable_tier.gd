@@ -8,7 +8,8 @@ class_name BuildableTier
 ## Game Tier
 @export var tier: int
 ## Bitmask of build requirements
-@export var build_reqs: int = 0
+@export_flags("Town", "Small Camp", "Large Camp", "Homestead","Workshop")  
+var build_reqs: int = 0
 ##Mesh data for this build
 @export var mesh: StaticMeshData
 
