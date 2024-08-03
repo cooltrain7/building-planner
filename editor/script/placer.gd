@@ -9,8 +9,8 @@ var target_position: Vector3 = Vector3.ZERO
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+
+func _physics_process(_delta):
 	get_target_position()
 	cursor.position = target_position
 	

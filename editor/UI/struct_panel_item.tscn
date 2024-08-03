@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ougs3op61if0"]
+
+[ext_resource type="Script" path="res://editor/script/UI/ui_struct_panel_item.gd" id="1_0mwc1"]
+[ext_resource type="Texture2D" uid="uid://teuh1iegrm1v" path="res://editor/UI/icons/IconHammer.png" id="2_np1o3"]
+
+[node name="BuildItem" type="PanelContainer" node_paths=PackedStringArray("struct_icon", "struct_name")]
+size_flags_horizontal = 3
+script = ExtResource("1_0mwc1")
+struct_icon = NodePath("HBoxContainer/Icon")
+struct_name = NodePath("HBoxContainer/Name")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_np1o3")
+expand_mode = 3
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Unset"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

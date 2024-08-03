@@ -5,7 +5,9 @@ class_name BuildableTier
 @export var code_name: String
 ## Ingame name
 @export var disp_name: String
-## Game Tier
+## Game icon
+@export var icon: Texture2D
+## Game tier
 @export var tier: int
 ## Bitmask of build requirements
 @export_flags("Town", "Small Camp", "Large Camp", "Homestead","Workshop")  

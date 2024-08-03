@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3lk8mtwxyj5l"]
+[gd_scene load_steps=16 format=3 uid="uid://c3lk8mtwxyj5l"]
 
 [ext_resource type="Script" path="res://editor/script/cursor.gd" id="1_8uddu"]
 [ext_resource type="Script" path="res://editor/script/camera_controller.gd" id="1_hw85h"]
 [ext_resource type="Script" path="res://editor/script/placer.gd" id="4_y7a0h"]
+[ext_resource type="PackedScene" uid="uid://c2q0qibado50l" path="res://editor/UI/info_panel.tscn" id="5_3bt3q"]
+[ext_resource type="PackedScene" uid="uid://b2whh3vn8jgi6" path="res://editor/UI/struct_panel.tscn" id="6_514j1"]
 [ext_resource type="Texture2D" uid="uid://ck1sofmxu5rna" path="res://editor/textures/uv_grid.png" id="6_skn7o"]
 [ext_resource type="Script" path="res://editor/script/data_controller.gd" id="7_fpsoh"]
 [ext_resource type="Resource" uid="uid://b5wrhmitce5j6" path="res://editor/buildables/resources/FortSquare3x3.tres" id="8_vmu0q"]
@@ -29,34 +31,13 @@ sky = SubResource("Sky_a4hvf")
 ambient_light_source = 3
 tonemap_mode = 2
 
-[sub_resource type="LabelSettings" id="LabelSettings_dj4x4"]
-font_size = 20
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_orjhg"]
-font_size = 18
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_pd8a7"]
-font_size = 20
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 5
-
-[sub_resource type="LabelSettings" id="LabelSettings_5dijy"]
-font_size = 18
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_sox1h"]
-font_size = 18
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 5
-
 [node name="Editor" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Info Panel" parent="CanvasLayer" instance=ExtResource("5_3bt3q")]
+
+[node name="Structure Panel" parent="CanvasLayer" instance=ExtResource("6_514j1")]
 
 [node name="DataController" type="Node" parent="."]
 script = ExtResource("7_fpsoh")
@@ -69,7 +50,6 @@ script = ExtResource("1_hw85h")
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 10, 0)
 size = 17.19
 script = ExtResource("4_y7a0h")
-ray_length = null
 cursor = NodePath("../../Cursor")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -77,12 +57,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 light_energy = 0.8
 shadow_enabled = true
 
-[node name="Cursor" type="Node3D" parent="." node_paths=PackedStringArray("data_control", "overlap_label", "build_label")]
+[node name="Cursor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13381, 24.279, 2.30481)
 script = ExtResource("1_8uddu")
-data_control = NodePath("../DataController")
-overlap_label = NodePath("../CanvasLayer/Info Panel/VBoxContainer/Statuses Panel/Overlapping Status")
-build_label = NodePath("../CanvasLayer/Info Panel/VBoxContainer/Statuses Panel/Build Status")
 metadata/_edit_group_ = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -101,61 +78,3 @@ shape = SubResource("ConcavePolygonShape3D_618x3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4yrho")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Info Panel" type="MarginContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info Panel"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Controls Panel" type="VBoxContainer" parent="CanvasLayer/Info Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Controls Title" type="Label" parent="CanvasLayer/Info Panel/VBoxContainer/Controls Panel"]
-layout_mode = 2
-text = "Controls"
-label_settings = SubResource("LabelSettings_dj4x4")
-vertical_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Info Panel/VBoxContainer/Controls Panel"]
-layout_mode = 2
-
-[node name="Controls Text" type="Label" parent="CanvasLayer/Info Panel/VBoxContainer/Controls Panel"]
-layout_mode = 2
-text = "Camera Move: WASD
-Camera Rotate: Q/E
-Camera Up/Down: CTRL/SPACE
-Switch Build: Scroll
-Switch Tier: Right click
-Place: Left Click"
-label_settings = SubResource("LabelSettings_orjhg")
-vertical_alignment = 1
-
-[node name="Statuses Panel" type="VBoxContainer" parent="CanvasLayer/Info Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Statuses Title" type="Label" parent="CanvasLayer/Info Panel/VBoxContainer/Statuses Panel"]
-layout_mode = 2
-text = "Planner Statuses"
-label_settings = SubResource("LabelSettings_pd8a7")
-vertical_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Info Panel/VBoxContainer/Statuses Panel"]
-layout_mode = 2
-
-[node name="Build Status" type="Label" parent="CanvasLayer/Info Panel/VBoxContainer/Statuses Panel"]
-layout_mode = 2
-text = "Build: None"
-label_settings = SubResource("LabelSettings_5dijy")
-
-[node name="Overlapping Status" type="Label" parent="CanvasLayer/Info Panel/VBoxContainer/Statuses Panel"]
-layout_mode = 2
-text = "Piece Overlapping: Yes"
-label_settings = SubResource("LabelSettings_sox1h")
-vertical_alignment = 1
